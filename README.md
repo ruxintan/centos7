@@ -2,7 +2,7 @@
 （整体流程参考https://www.osyunwei.com/archives/7829.html）
 
 1. 制作centos的u盘启动，注意安装时盘符选择问题。在安装时tab后修改对应位置为自己的u盘盘符名。
- 	- 第一种解决方案（参考https://blog.csdn.net/Bruce_You/article/details/75332090），找到自己u盘的盘符名。
+ 	- 第一种解决方案（参考https://blog.csdn.net/Bruce_You/article/details/75332090）， 找到自己u盘的盘符名。
 即修改第二步中按TAB键出来的命令：将命令修改为：>vmlinuz initrd=initrd.img linux dd quiet
 	- 第二种解决方案：直接将u盘名称改为例如CENTOS7,然后把label修改为CENTOS7即可
 
@@ -24,7 +24,7 @@
 
 6. gpu驱动等安装
 
-	- 参考（https://blog.csdn.net/xueshengke/article/details/78134991、https://blog.csdn.net/u012325865/article/details/73034018）
+	- 参考（https://blog.csdn.net/xueshengke/article/details/78134991、 https://blog.csdn.net/u012325865/article/details/73034018）
 	1. 下载nvidia显卡驱动和cuda，根据自己的型号官网下载即可
 	2. 安装gcc等（yum install gcc 、yum install gcc-c++、yum install kernel-devel、yum install kernel-headers）
 	3. 赋予权限：chmod 755 NVIDIA-Linux-x86_64-390.77.run ,chmod 755 cuda_9.2.148_396.37_linux
