@@ -1,4 +1,4 @@
-#服务器安装centos并配置网络
+# 服务器安装centos并配置网络
 （整体流程参考https://www.osyunwei.com/archives/7829.html）
 
 1. 制作centos的u盘启动，注意安装时盘符选择问题。在安装时tab后修改对应位置为自己的u盘盘符名。
@@ -40,8 +40,8 @@ options nouveau modeset=0 加入到/etc/modprobe.d/nvidia-installer-disable-nouv
 	- ./NVIDIA-Linux-x86_64-390.77.run --kernel-source-path=/usr/src/kernels/3.10.0-862.9.1.el7.x86_64  -k $(uname -r)   此处/kernels后信息需要查看自己内核版本uname -r
 	- 安装成功后 nvidia-smi可看到驱动信息
 7. 安装cuda：./cuda_9.2.148_396.37_linux --kernel-source-path=/usr/src/kernels/3.10.0-862.9.1.el7.x86_64      此处/kernels后信息需要查看自己内核版本uname -r
-8. 配置环境变量：# vim /etc/profile
+8. 配置环境变量：vim /etc/profile
 export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
-9. # source /etc/profile ; 使环境变量立即生效
+9. source /etc/profile ; 使环境变量立即生效
 10. 安装成功后 nvcc --version检查即可
