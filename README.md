@@ -24,24 +24,24 @@
 
 6. gpu驱动等安装
 
-- 参考（https://blog.csdn.net/xueshengke/article/details/78134991、https://blog.csdn.net/u012325865/article/details/73034018）
-1. 下载nvidia显卡驱动和cuda，根据自己的型号官网下载即可
-2. 安装gcc等（yum install gcc 、yum install gcc-c++、yum install kernel-devel、yum install kernel-headers）
-3. 赋予权限：chmod 755 NVIDIA-Linux-x86_64-390.77.run ,chmod 755 cuda_9.2.148_396.37_linux
-4. 屏蔽nouveau驱动：
-	1. 将blacklist nouveau
+	- 参考（https://blog.csdn.net/xueshengke/article/details/78134991、https://blog.csdn.net/u012325865/article/details/73034018）
+	1. 下载nvidia显卡驱动和cuda，根据自己的型号官网下载即可
+	2. 安装gcc等（yum install gcc 、yum install gcc-c++、yum install kernel-devel、yum install kernel-headers）
+	3. 赋予权限：chmod 755 NVIDIA-Linux-x86_64-390.77.run ,chmod 755 cuda_9.2.148_396.37_linux
+	4. 屏蔽nouveau驱动：
+		1. 将blacklist nouveau
 options nouveau modeset=0 加入到/etc/modprobe.d/nvidia-installer-disable-nouveau.conf和/lib/modprobe.d/nvidia-installer-disable-nouveau.conf中
-	2. 重做 initramfs 镜像：
+		2. 重做 initramfs 镜像：
 	 cp /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r).img.bak
     dracut /boot/initramfs-$(uname -r).img $(uname -r)
     rm /boot/initramfs-$(uname -r).img.bak ; 这一步可不执行
-5. 重启
-6. 安装nvidia驱动：
-	- ./NVIDIA-Linux-x86_64-390.77.run --kernel-source-path=/usr/src/kernels/3.10.0-862.9.1.el7.x86_64  -k $(uname -r)   此处/kernels后信息需要查看自己内核版本uname -r
-	- 安装成功后 nvidia-smi可看到驱动信息
-7. 安装cuda：./cuda_9.2.148_396.37_linux --kernel-source-path=/usr/src/kernels/3.10.0-862.9.1.el7.x86_64      此处/kernels后信息需要查看自己内核版本uname -r
-8. 配置环境变量：vim /etc/profile
+	5. 重启
+	6. 安装nvidia驱动：
+		- ./NVIDIA-Linux-x86_64-390.77.run --kernel-source-path=/usr/src/kernels/3.10.0-862.9.1.el7.x86_64  -k $(uname -r)   此处/kernels后信息需要查看自己内核版本uname -r
+		- 安装成功后 nvidia-smi可看到驱动信息
+	7. 安装cuda：./cuda_9.2.148_396.37_linux --kernel-source-path=/usr/src/kernels/3.10.0-862.9.1.el7.x86_64      此处/kernels后信息需要查看自己内核版本uname -r
+	8. 配置环境变量：vim /etc/profile
 export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
-9. source /etc/profile ; 使环境变量立即生效
-10. 安装成功后 nvcc --version检查即可
+	9. source /etc/profile ; 使环境变量立即生效
+	10. 安装成功后 nvcc --version检查即可
